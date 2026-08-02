@@ -33,6 +33,7 @@ jobs:
           rm -rf app/www/*
           cp index.html style.css app.js app/www/
           cd app
+          cordova plugin add cordova-plugin-geolocation
           cordova platform add android
           cordova build android
 
@@ -41,4 +42,3 @@ jobs:
         with:
           name: Velocimetro-APK
           path: app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
-
