@@ -3,15 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Velocímetro</title>
+    <title>Velocímetro Pro</title>
+    <!-- Fuente digital estilo sci-fi / HUD -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="speed-container">
-        <div id="speed">0</div>
-        <div class="unit">km/h</div>
+    <div class="hud-container">
+        <!-- SVG para el círculo del tacómetro -->
+        <svg class="progress-ring" width="250" height="250">
+            <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="12" fill="transparent" r="110" cx="125" cy="125"/>
+            <circle class="progress-ring__circle" stroke="#00ff00" stroke-width="12" fill="transparent" r="110" cx="125" cy="125"/>
+        </svg>
+        
+        <div class="speed-data">
+            <div id="speed">0</div>
+            <div class="unit">KM/H</div>
+        </div>
     </div>
-    <div id="status">Buscando señal GPS...</div>
+    
+    <div id="status">BUSCANDO SATÉLITES...</div>
+
     <script src="app.js"></script>
 </body>
 </html>
