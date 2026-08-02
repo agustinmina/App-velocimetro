@@ -29,10 +29,38 @@ function setSpeed(speedKmh) {
 
 setSpeed(0);
 
-// ESPERAR A QUE ANDROID ESTÉ LISTO ANTES DE PEDIR EL GPS
-document.addEventListener('deviceready', onDeviceReady, false);
+// Escucha a que el puente nativo esté listo
+document.addEventListener('deviceready', checkPermissions, false);
 
-function onDeviceReady() {
+function checkPermissions() {
+    statusElement.textContent = "SOLICITANDO PERMISO...";
+    
+    var permissions = cordova.plugins.permissions;
+    // Verifica si ya tiene permiso de GPS exacto
+    permissions.checkPermission(permissions.ACCESS_FINE_LOCATION, function(status) {
+        if (status.hasPermission) {
+            startGPS();
+        } else {
+            // Si no tiene, fuerza la ventana nativa de Android
+            permissions.requestPermission(permissions.ACCESS_FINE_LOCATION, function(status) {
+                if (status.hasPermission) {
+                    startGPS();
+                } else {
+                    statusElement.textContent = "PERMISO DENEGADO";
+                    statusElement.style.color = "#ff0044";
+                }
+            }, function() {
+                statusElement.textContent = "ERROR AL PEDIR PERMISOS";
+                statusElement.style.color = "#ff0044";
+            });
+        }
+    }, function() {
+        statusElement.textContent = "ERROR INTERNO DE PERMISOS";
+        statusElement.style.color = "#ff0044";
+    });
+}
+
+function startGPS() {
     statusElement.textContent = "BUSCANDO SATÉLITES...";
     
     if ('geolocation' in navigator) {
@@ -51,13 +79,10 @@ function onDeviceReady() {
                 }
             },
             (error) => {
-                statusElement.textContent = "ERROR: ACEPTA EL PERMISO DE UBICACIÓN";
+                statusElement.textContent = "ERROR AL LEER EL SENSOR GPS";
                 statusElement.style.color = "#ff0044";
             },
             { enableHighAccuracy: true, maximumAge: 0, timeout: 5000 }
         );
-    } else {
-        statusElement.textContent = "DISPOSITIVO NO COMPATIBLE";
-        statusElement.style.color = "#ff0044";
     }
 }
