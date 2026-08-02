@@ -33,6 +33,9 @@ jobs:
           rm -rf app/www/*
           cp index.html style.css app.js app/www/
           cd app
+          
+          cordova plugin add cordova-plugin-geolocation
+          cordova plugin add cordova-plugin-android-permissions
           cordova platform add android
           cordova build android
 
