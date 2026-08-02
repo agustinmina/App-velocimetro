@@ -1,0 +1,33 @@
+body {
+    background-color: #111;
+    color: #0f0; 
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+.speed-container {
+    text-align: center;
+}
+#speed {
+    font-size: 9rem;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+}
+.unit {
+    font-size: 2rem;
+    color: #888;
+    margin-top: -10px;
+}
+#status {
+    margin-top: 30px;
+    color: #ffaa00;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
