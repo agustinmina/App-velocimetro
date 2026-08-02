@@ -33,6 +33,24 @@ jobs:
           rm -rf app/www/*
           cp index.html style.css app.js app/www/
           cd app
+          
+          # Forzar los permisos directamente en el archivo de configuración nativo
+          cat << 'EOF' > config.xml
+          <?xml version='1.0' encoding='utf-8'?>
+          <widget id="com.velocimetro.moto" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android">
+              <name>VelocimetroMoto</name>
+              <description>Velocimetro Moto</description>
+              <content src="index.html" />
+              <platform name="android">
+                  <config-file target="AndroidManifest.xml" parent="/*">
+                      <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+                      <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+                      <uses-feature android:name="android.hardware.location.gps" />
+                  </config-file>
+              </platform>
+          </widget>
+          EOF
+          
           cordova plugin add cordova-plugin-geolocation
           cordova platform add android
           cordova build android
