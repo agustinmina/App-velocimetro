@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="hud-container">
-        <svg class="progress-ring" width="250" height="250">
-            <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="12" fill="transparent" r="110" cx="125" cy="125"/>
-            <circle class="progress-ring__circle" stroke="#00ff00" stroke-width="12" fill="transparent" r="110" cx="125" cy="125"/>
+        <svg class="progress-ring" width="230" height="230">
+            <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="10" fill="transparent" r="100" cx="115" cy="115"/>
+            <circle class="progress-ring__circle" stroke="#00ff00" stroke-width="10" fill="transparent" r="100" cx="115" cy="115"/>
         </svg>
         
         <div class="speed-data">
@@ -20,9 +20,20 @@
         </div>
     </div>
     
+    <!-- Panel de Odómetros -->
+    <div class="odometer-panel">
+        <div class="odo-box">
+            <span class="odo-label">VIAJE</span>
+            <span id="trip-dist">0.00</span> <span class="odo-unit">km</span>
+        </div>
+        <div class="odo-box">
+            <span class="odo-label">TOTAL</span>
+            <span id="total-dist">0.00</span> <span class="odo-unit">km</span>
+        </div>
+    </div>
+
     <div id="status">INICIANDO SISTEMA...</div>
 
-    <!-- ESTE ES EL PUENTE NATIVO QUE FALTABA -->
     <script src="cordova.js"></script>
     <script src="app.js"></script>
 </body>
